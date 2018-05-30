@@ -8,6 +8,8 @@ const SETTINGS_KEY = "product-integrity";
 const SERVER_STAGE = "https://settings.stage.mozaws.net/v1";
 // Content-signature root hash for stage.
 const HASH_STAGE = "DB:74:CE:58:E4:F9:D0:9E:E0:42:36:BE:6C:C5:C4:F6:6A:E7:74:7D:C0:21:42:7A:03:BC:2F:57:0C:8B:9B:90";
+// This should be taken from the server (see Bug 1465607)
+const ATTACHMENTS_BASE_URL = "https://net-mozaws-stage-kinto-fennec.s3.amazonaws.com"
 
 
 async function reset(client) {
@@ -25,7 +27,8 @@ function show(records) {
   for (const record of records) {
     const item = tpl.content.cloneNode(true);
     item.querySelector(".title").textContent = record.title;
-    item.querySelector("img").setAttribute("src", record.attachment.url);
+    const url = `${ATTACHMENTS_BASE_URL}/${record.attachment.location}`;
+    item.querySelector("a").setAttribute("href", url);
     list.appendChild(item);
   }
 }
