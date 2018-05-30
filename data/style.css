@@ -1,0 +1,29 @@
+@import url("chrome://global/skin/in-content/common.css");
+
+html, body {
+  max-height: 100vh;
+  max-width: 100vw;
+}
+
+body {
+  margin: 40px;
+  display: grid;
+
+  grid-template-areas:
+      "title      actionbox  actionbox"
+      "list       list       list"
+      "list       list       list";
+}
+h1 { grid-area: title }
+#actionbox { grid-area: actionbox }
+#records-list { grid-area: list }
+
+.record {
+  padding: 10px;
+  border: 1px solid var(--in-content-border-color);
+  display: inline-block;
+}
+
+.record img {
+  max-height: 200px;
+}
