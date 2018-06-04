@@ -1,5 +1,5 @@
 const { Services } = ChromeUtils.import("resource://gre/modules/Services.jsm", {});
-const { RemoteSettings } = ChromeUtils.import("resource://services-common/remote-settings.js", {});
+const { RemoteSettings } = ChromeUtils.import("resource://services-settings/remote-settings.js", {});
 
 
 // The remote settings collection name
@@ -37,7 +37,7 @@ async function main() {
   Services.prefs.setCharPref("services.settings.server", SERVER_STAGE);
   Services.prefs.setCharPref("security.content.signature.root_hash", HASH_STAGE);
 
-  const client = RemoteSettings(SETTINGS_KEY);
+  const client = RemoteSettings(SETTINGS_KEY, { bucketName: "main-preview" });
 
   // On page load show current list.
   const current = await client.get();
