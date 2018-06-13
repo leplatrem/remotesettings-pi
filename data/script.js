@@ -37,7 +37,7 @@ async function main() {
   Services.prefs.setCharPref("services.settings.server", SERVER_STAGE);
   Services.prefs.setCharPref("security.content.signature.root_hash", HASH_STAGE);
 
-  const client = RemoteSettings(SETTINGS_KEY, { bucketName: "main-preview" });
+  const client = RemoteSettings(SETTINGS_KEY);
 
   // On page load show current list.
   const current = await client.get();
