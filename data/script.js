@@ -27,8 +27,12 @@ function show(records) {
   for (const record of records) {
     const item = tpl.content.cloneNode(true);
     item.querySelector(".title").textContent = record.title;
-    const url = `${ATTACHMENTS_BASE_URL}/${record.attachment.location}`;
-    item.querySelector("a").setAttribute("href", url);
+    if (record.attachment) {
+      const url = `${ATTACHMENTS_BASE_URL}/${record.attachment.location}`;
+      item.querySelector("a").setAttribute("href", url);
+    } else {
+      item.querySelector("a").textContent = "";
+    }
     list.appendChild(item);
   }
 }
