@@ -30,6 +30,7 @@ function show(records) {
     if (record.attachment) {
       const url = `${ATTACHMENTS_BASE_URL}/${record.attachment.location}`;
       item.querySelector("a").setAttribute("href", url);
+      item.querySelector("img").setAttribute("src", url);
     } else {
       item.querySelector("a").textContent = "";
     }
@@ -43,12 +44,8 @@ async function main() {
 
   const client = RemoteSettings(SETTINGS_KEY);
 
-  // On page load show current list.
-  const current = await client.get();
-  await show(current);
-
   // When sync occurs, refresh the list.
-  client.on("sync", async ({ data: { current } }) => show(current));
+  client.on("sync", ({ data: { current } }) => show(current));
 
   // Start sync on click.
   document.getElementById("sync").onclick = () => RemoteSettings.pollChanges();
@@ -58,6 +55,10 @@ async function main() {
     await reset(client);
     show([]);
   };
+
+  // On page load show current list.
+  const current = await client.get();
+  await show(current);
 }
 
 window.addEventListener("DOMContentLoaded", main);

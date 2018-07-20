@@ -27,3 +27,7 @@ h1 { grid-area: title }
 .record img {
   max-height: 200px;
 }
+
+.record a {
+  display: block;
+}
