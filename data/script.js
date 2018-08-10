@@ -45,7 +45,13 @@ async function main() {
   const client = RemoteSettings(SETTINGS_KEY);
 
   // When sync occurs, refresh the list.
-  client.on("sync", ({ data: { current } }) => show(current));
+  const refresh = ({ data: { current } }) => show(current);
+  client.on("sync", refresh);
+  window.addEventListener('unload', () => {
+    if (typeof client.off == "function") {
+      client.off("sync", refresh);
+    }
+  });
 
   // Start sync on click.
   document.getElementById("sync").onclick = () => RemoteSettings.pollChanges();
