@@ -41,7 +41,10 @@ async function main() {
     show([]);
   };
 
-  remotesettings.onSync.addListener(({ data: { current } }) => show(current));
+  remotesettings.onSync.addListener(data => {
+    const current = JSON.parse(data);
+    show(current);
+  });
 }
 
 window.addEventListener("DOMContentLoaded", main);
