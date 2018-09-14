@@ -1,0 +1,55 @@
+[
+  {
+    "namespace": "experiments.remotesettings",
+    "description": "Remote Settings",
+    "functions": [
+      {
+        "name": "get",
+        "type": "function",
+        "description": "Return current records",
+        "async": true,
+        "parameters": []
+      },
+      {
+        "name": "sync",
+        "type": "function",
+        "description": "Polls for changes",
+        "async": true,
+        "parameters": []
+      },
+      {
+        "name": "reset",
+        "type": "function",
+        "description": "Resets the local state",
+        "async": true,
+        "parameters": []
+      }
+    ],
+    "events": [
+      {
+        "name": "onSync",
+        "type": "function",
+        "description": "Synchronization occured",
+        "parameters": [
+          {
+            "name": "current",
+            "description": "The current records for the collection",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "onError",
+        "type": "function",
+        "description": "General error",
+        "parameters": [
+          {
+            "name": "error",
+            "description": "The error message",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  }
+]
