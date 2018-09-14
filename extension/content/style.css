@@ -16,6 +16,11 @@ body {
       "list       list       list"
       "list       list       list";
 }
+
+body.loading {
+  opacity: 0.5;
+}
+
 h1 { grid-area: title }
 #actionbox { grid-area: actionbox }
 #records-list { grid-area: list }
