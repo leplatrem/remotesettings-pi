@@ -9,6 +9,13 @@ const ATTACHMENTS_BASE_URL = "https://net-mozaws-stage-kinto-fennec.s3.amazonaws
 
 const remotesettings = browser.experiments.remotesettings;
 
+function showError(error) {
+  if (error) {
+    console.error(error);
+  }
+  document.getElementById("error").textContent = error;
+}
+
 function show(records) {
   const list = document.getElementById("records-list");
   const tpl = document.getElementById("record-tpl");
@@ -33,10 +40,14 @@ async function main() {
   remotesettings.get().then(records => show(records));
 
   // Start sync on click.
-  document.getElementById("sync").onclick = () => remotesettings.sync();
+  document.getElementById("sync").onclick = () => {
+    showError(null);
+    remotesettings.sync();
+  }
 
   // Empty local database and displayed list on reset.
   document.getElementById("reset").onclick = async () => {
+    showError(null);
     await remotesettings.reset();
     show([]);
   };
@@ -45,6 +56,8 @@ async function main() {
     const current = JSON.parse(data);
     show(current);
   });
+
+  remotesettings.onError.addListener(error => showError(error));
 }
 
 window.addEventListener("DOMContentLoaded", main);

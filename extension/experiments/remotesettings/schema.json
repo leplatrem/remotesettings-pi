@@ -37,6 +37,18 @@
             "type": "string"
           }
         ]
+      },
+      {
+        "name": "onError",
+        "type": "function",
+        "description": "General error",
+        "parameters": [
+          {
+            "name": "error",
+            "description": "The error message",
+            "type": "string"
+          }
+        ]
       }
     ]
   }

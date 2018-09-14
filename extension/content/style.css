@@ -3,6 +3,8 @@
 html, body {
   max-height: 100vh;
   max-width: 100vw;
+
+  --error-text-color: red;
 }
 
 body {
@@ -17,6 +19,10 @@ body {
 h1 { grid-area: title }
 #actionbox { grid-area: actionbox }
 #records-list { grid-area: list }
+
+#error {
+  color: var(--error-text-color);
+}
 
 .record {
   padding: 10px;
