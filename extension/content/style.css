@@ -30,9 +30,14 @@ h1 { grid-area: title }
 }
 
 .record {
+  margin: 5px;
   padding: 10px;
   border: 1px solid var(--in-content-border-color);
   display: inline-block;
+}
+
+.record h3 {
+  margin-top: 0px;
 }
 
 .record img {
