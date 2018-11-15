@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "remote-settings-pi",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Remote Settings Product Integrity extension for Firefox",
   "homepage_url": "https://github.com/leplatrem/remotesettings-pi",
   "applications": {
