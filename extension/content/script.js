@@ -29,7 +29,12 @@ function show(records) {
   const tpl = document.getElementById("record-tpl");
 
   list.innerText = records.length ? "" : "Empty.";
-  for (const record of records) {
+
+  const sortedRecords = records.sort((a, b) => {
+    return b.last_modified - a.last_modified;  // descending.
+  });
+
+  for (const record of sortedRecords) {
     const item = tpl.content.cloneNode(true);
     item.querySelector(".title").textContent = record.title;
     if (record.attachment) {
@@ -52,7 +57,7 @@ async function main() {
     showError(null);
     showLoading(true);
     remotesettings.sync();
-  }
+  };
 
   // Empty local database and displayed list on reset.
   document.getElementById("reset").onclick = async () => {
