@@ -14,6 +14,8 @@ const SETTINGS_KEY = "product-integrity";
 const SERVER_STAGE = "https://settings.stage.mozaws.net/v1";
 // Content-signature root hash for stage.
 const HASH_STAGE = "DB:74:CE:58:E4:F9:D0:9E:E0:42:36:BE:6C:C5:C4:F6:6A:E7:74:7D:C0:21:42:7A:03:BC:2F:57:0C:8B:9B:90";
+// Megaphone stage instance
+const MEGAPHONE_STAGE = "wss://autopush.stage.mozaws.net";
 
 
 function reportError(error) {
@@ -30,6 +32,7 @@ var remotesettings = class extends ExtensionAPI {
   getAPI(context) {
     Services.prefs.setCharPref("services.settings.server", SERVER_STAGE);
     Services.prefs.setCharPref("security.content.signature.root_hash", HASH_STAGE);
+    Services.prefs.setCharPref("dom.push.serverURL", MEGAPHONE_STAGE);
 
     const client = RemoteSettings(SETTINGS_KEY);
 
