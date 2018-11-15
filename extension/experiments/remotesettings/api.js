@@ -33,6 +33,9 @@ var remotesettings = class extends ExtensionAPI {
     Services.prefs.setCharPref("services.settings.server", SERVER_STAGE);
     Services.prefs.setCharPref("security.content.signature.root_hash", HASH_STAGE);
     Services.prefs.setCharPref("dom.push.serverURL", MEGAPHONE_STAGE);
+    // FIXME: this is part of the gradual rollout plan for
+    // megaphone. Eventually this won't be necessary.
+    Services.prefs.setBoolPref("dom.push.alwaysConnect", true);
 
     const client = RemoteSettings(SETTINGS_KEY);
 
